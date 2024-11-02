@@ -143,5 +143,7 @@ alias wget='wget -c'  # Continue incomplete downloads
 alias exegol='sudo -E $HOME/.local/bin/exegol' # Run exegol with sudo and preserve environment variables    
 
 # Shell integrations
+eval "$(register-python-argcomplete --no-defaults exegol)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+   
