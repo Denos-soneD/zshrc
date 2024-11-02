@@ -148,7 +148,7 @@ fast_push() {
    local message=${*:-"fast push"}
    git add . && git commit -m "$message" && git push
 }
-alias fp='fast_push'
+alias fp='fast_push' # Fast push with optional commit message
 
 # Additional useful aliases
 alias cls='clear'     # Clear terminal screen (duplicate of 'c')
