@@ -180,7 +180,6 @@ alias chmod='chmod --preserve-root' # Prevent chmod from operating recursively o
 alias chgrp='chgrp --preserve-root' # Prevent chgrp from operating recursively on /
 alias wget='wget -c'  # Continue incomplete downloads
 alias exegol='sudo -E $HOME/.local/bin/exegol' # Run exegol with sudo and preserve environment variables
-alias exegol='sudo -E $HOME/.local/bin/exegol' # Run exegol with sudo and preserve environment variables
 
 # Shell integrations
 eval "$(register-python-argcomplete --no-defaults exegol)"
