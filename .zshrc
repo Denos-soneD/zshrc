@@ -7,7 +7,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-if [ ! -d "$HOME/.config/ohmyposh/zen.toml" ]; then
+if [ ! -f "$HOME/.config/ohmyposh/zen.toml" ]; then
    mkdir -p "$HOME/.config/ohmyposh"
    wget https://raw.githubusercontent.com/Denos-soneD/zshrc/refs/heads/main/zen.toml   -O "$HOME/.config/ohmyposh/zen.toml"
 fi
