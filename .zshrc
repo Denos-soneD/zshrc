@@ -142,6 +142,7 @@ alias gcl='git clone' # Clone repository
 alias gcb='git checkout -b' # Create and checkout new branch
 alias gpr='git pull --rebase' # Pull changes with rebase
 alias gsh='git show' # Show git commit
+
 # Function for fast push with optional commit message
 fast_push() {
    local message=${*:-"fast push"}
