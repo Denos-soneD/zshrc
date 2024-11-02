@@ -1,3 +1,36 @@
+# Check and install fzf if not installed
+if ! command -v fzf &> /dev/null; then
+   echo "fzf not found, installing..."
+   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+   ~/.fzf/install
+fi
+
+# Check and install oh-my-posh if not installed
+if ! command -v oh-my-posh &> /dev/null; then
+   echo "oh-my-posh not found, installing..."
+   curl -s https://ohmyposh.dev/install.sh | bash -s
+fi
+
+# Check and install zoxide if not installed
+if ! command -v zoxide &> /dev/null; then
+   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+fi
+
+# Check for updates to the .zshrc file on GitHub
+GITHUB_REPO="Denos-soneD/zshrc"
+LOCAL_ZSHRC="$HOME/.zshrc"
+REMOTE_ZSHRC_URL="https://raw.githubusercontent.com/$GITHUB_REPO/main/.zshrc"
+
+# Fetch the latest .zshrc from GitHub
+LATEST_ZSHRC=$(curl -s $REMOTE_ZSHRC_URL)
+
+# Compare the local and remote .zshrc files
+if [ "$LATEST_ZSHRC" != "$(cat $LOCAL_ZSHRC)" ]; then
+   echo ".zshrc has been updated on GitHub, downloading the latest version..."
+   echo "$LATEST_ZSHRC" > $LOCAL_ZSHRC
+   source $LOCAL_ZSHRC
+fi
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -7,6 +40,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+# Set the default editor
 if [ ! -f "$HOME/.config/ohmyposh/zen.toml" ]; then
    mkdir -p "$HOME/.config/ohmyposh"
    wget https://raw.githubusercontent.com/Denos-soneD/zshrc/refs/heads/main/zen.toml   -O "$HOME/.config/ohmyposh/zen.toml"
@@ -146,4 +180,3 @@ alias exegol='sudo -E $HOME/.local/bin/exegol' # Run exegol with sudo and preser
 eval "$(register-python-argcomplete --no-defaults exegol)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-   
