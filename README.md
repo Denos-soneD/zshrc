@@ -1,5 +1,3 @@
-# zshrc
-
 To install `fzf`, `oh-my-posh`, and `woxide`, use the following commands:
 
 ### Install fzf
@@ -10,16 +8,16 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 ### Install oh-my-posh
 ```bash
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-sudo chmod +x /usr/local/bin/oh-my-posh
+curl -s https://ohmyposh.dev/install.sh | bash -s
 ```
 
-### Install woxide
+### Install zoxide
 ```bash
-cargo install woxide
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 ```
 
-Install my zshrc :
+### Install my zshrc :
 
 ```bash
 curl -o ~/.zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc && source ~/.zshrc
+```
