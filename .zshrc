@@ -65,14 +65,14 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
+alias ..='cd ..'    # Go up one directory
+alias ...='cd ../..' # Go up two directories
+alias ....='cd ../../..'   # Go up three directories
+alias .....='cd ../../../..'  # Go up four directories
 
 # Aliases for ls command with different options
-alias ls='ls --color=auto'
-alias la='ls -A'
+alias ls='ls --color=auto' # List files with color highlighting
+alias la='ls -A'        # List all files except . and ..
 alias ll='ls -alF'    # List all files in long format with type indicators
 alias l='ls -CF'      # List files in columns with type indicators
 
@@ -140,6 +140,7 @@ alias chown='chown --preserve-root' # Prevent chown from operating recursively o
 alias chmod='chmod --preserve-root' # Prevent chmod from operating recursively on /
 alias chgrp='chgrp --preserve-root' # Prevent chgrp from operating recursively on /
 alias wget='wget -c'  # Continue incomplete downloads
+alias exegol='sudo -E /home/denos/.local/bin/exegol' # Run exegol with sudo and preserve environment variables    
 
 # Shell integrations
 eval "$(fzf --zsh)"
