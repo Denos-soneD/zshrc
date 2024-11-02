@@ -13,6 +13,7 @@ fi
 
 # Check and install zoxide if not installed
 if ! command -v zoxide &> /dev/null; then
+   echo "zoxide not found, installing..."
    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 fi
 
