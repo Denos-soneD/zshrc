@@ -83,6 +83,8 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:*' fzf-preview 'source ~/.zshrc; alias $word 2>/dev/null || (man $word | col -b | sed -n "/^DESCRIPTION/,/^OPTIONS/{/^OPTIONS/!p}" | fold -s -w 69 | sed "s/^[ \t]*//" 2>/dev/null || echo "No alias or man page found for $word" 2>/dev/null)'
+
 
 # Aliases
 alias ..='cd ..'    # Go up one directory
