@@ -142,7 +142,13 @@ alias gcl='git clone' # Clone repository
 alias gcb='git checkout -b' # Create and checkout new branch
 alias gpr='git pull --rebase' # Pull changes with rebase
 alias gsh='git show' # Show git commit
-alias gf='git add . && git commit -m "fast push" && git push' # Fast push: add, commit, and push
+# alias gf='git add . && git commit -m "fast push" && git push' # Fast push: add, commit, and push
+# Function for fast push with optional commit message
+fast_push() {
+   local message=${1:-"fast push"}
+   git add . && git commit -m "$message" && git push
+}
+alias gf='fast_push'
 
 # Additional useful aliases
 alias cls='clear'     # Clear terminal screen (duplicate of 'c')
