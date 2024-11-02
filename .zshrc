@@ -168,6 +168,7 @@ alias chgrp='chgrp --preserve-root' # Prevent chgrp from operating recursively o
 alias wget='wget -c'  # Continue incomplete downloads
 alias exegol='sudo -E $HOME/.local/bin/exegol' # Run exegol with sudo and preserve environment variables
 alias sa='sed -n "/^# Aliases/,/^#End of aliases/p" "$HOME/.zshrc"' # Show all aliases
+alias upzshrc='curl -o ~/.zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc && source ~/.zshrc' # Update zshrc from GitHub
 #End of aliases
 
 # Shell integrations
