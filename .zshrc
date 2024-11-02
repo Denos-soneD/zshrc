@@ -127,7 +127,11 @@ alias gf='git add . && git commit -m "fast push" && git push' # Fast push: add, 
 # Additional useful aliases
 alias cls='clear'     # Clear terminal screen (duplicate of 'c')
 alias reload='source ~/.zshrc' # Reload zsh configuration
-alias update='sudo apt update && sudo apt upgrade' # Update and upgrade system packages
+if command -v apt &> /dev/null; then
+   alias update='sudo apt update && sudo apt upgrade' # Update and upgrade system packages for Debian-based distros
+elif command -v pacman &> /dev/null; then
+   alias update='sudo pacman -Syu' # Update and upgrade system packages for Arch-based distros
+fi
 alias ip='ip -c a'    # Show IP addresses with color
 alias ports='netstat -tulanp' # Show listening ports and associated programs
 
