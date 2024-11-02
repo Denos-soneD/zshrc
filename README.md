@@ -1,4 +1,4 @@
-To install `fzf`, `oh-my-posh`, and `woxide`, use the following commands:
+# ZSHRC
 
 ### Install fzf
 ```bash
