@@ -17,9 +17,8 @@ if ! command -v zoxide &> /dev/null; then
 fi
 
 # Check for updates to the .zshrc file on GitHub
-GITHUB_REPO="Denos-soneD/zshrc"
 LOCAL_ZSHRC="$HOME/.zshrc"
-REMOTE_ZSHRC_URL="https://raw.githubusercontent.com/$GITHUB_REPO/main/.zshrc"
+REMOTE_ZSHRC_URL="https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc"
 
 # Fetch the latest .zshrc from GitHub
 LATEST_ZSHRC=$(curl -s $REMOTE_ZSHRC_URL)
@@ -175,7 +174,6 @@ alias chmod='chmod --preserve-root' # Prevent chmod from operating recursively o
 alias chgrp='chgrp --preserve-root' # Prevent chgrp from operating recursively on /
 alias wget='wget -c'  # Continue incomplete downloads
 alias exegol='sudo -E $HOME/.local/bin/exegol' # Run exegol with sudo and preserve environment variables
-alias k='kubectl'     # Alias for kubectl
 
 # Shell integrations
 eval "$(register-python-argcomplete --no-defaults exegol)"
