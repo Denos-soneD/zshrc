@@ -70,7 +70,6 @@ autoload -Uz compinit && compinit
 
 zinit cdreplay -q
 
-
 #Init oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
@@ -175,7 +174,8 @@ alias chown='chown --preserve-root' # Prevent chown from operating recursively o
 alias chmod='chmod --preserve-root' # Prevent chmod from operating recursively on /
 alias chgrp='chgrp --preserve-root' # Prevent chgrp from operating recursively on /
 alias wget='wget -c'  # Continue incomplete downloads
-alias exegol='sudo -E $HOME/.local/bin/exegol' # Run exegol with sudo and preserve environment variables    
+alias exegol='sudo -E $HOME/.local/bin/exegol' # Run exegol with sudo and preserve environment variables
+alias k='kubectl'     # Alias for kubectl
 
 # Shell integrations
 eval "$(register-python-argcomplete --no-defaults exegol)"
