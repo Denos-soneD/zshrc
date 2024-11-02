@@ -16,19 +16,25 @@ if ! command -v zoxide &> /dev/null; then
    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 fi
 
-# Check for updates to the .zshrc file on GitHub
-LOCAL_ZSHRC="$HOME/.zshrc"
-REMOTE_ZSHRC_URL="https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc"
+# Variables
+REPO_URL="git@github.com:Denos-soneD/zshrc.git"
+LAST_SHA_FILE="$HOME/.last_sha.txt"
 
-# Fetch the latest .zshrc from GitHub
-LATEST_ZSHRC=$(curl -s $REMOTE_ZSHRC_URL)
+# Obtenir le SHA actuel du dépôt distant
+current_sha=$(git ls-remote $REPO_URL HEAD | awk '{print $1}')
 
-# Compare the local and remote .zshrc files
-if [ "$LATEST_ZSHRC" != "$(cat $LOCAL_ZSHRC)" ]; then
-   echo ".zshrc has been updated on GitHub, downloading the latest version..."
-   echo "$LATEST_ZSHRC" > $LOCAL_ZSHRC
-   source $LOCAL_ZSHRC
+# Lire le SHA précédent enregistré
+last_sha=$(cat "$LAST_SHA_FILE" 2>/dev/null)
+
+# Comparer les SHAs
+if [ "$current_sha" != "$last_sha" ]; then
+  echo "Le dépôt a été mis à jour."
+  echo "$current_sha" > "$LAST_SHA_FILE" # Met à jour le SHA
+  curl -o ~/.zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc && source ~/.zshrc
+else
+  echo "Le dépôt est à jour."
 fi
+
 
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -174,7 +180,6 @@ alias chmod='chmod --preserve-root' # Prevent chmod from operating recursively o
 alias chgrp='chgrp --preserve-root' # Prevent chgrp from operating recursively on /
 alias wget='wget -c'  # Continue incomplete downloads
 alias exegol='sudo -E $HOME/.local/bin/exegol' # Run exegol with sudo and preserve environment variables
-alias k='kubectl'     # Shortcut for kubectl
 
 # Shell integrations
 eval "$(register-python-argcomplete --no-defaults exegol)"
