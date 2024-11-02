@@ -154,9 +154,9 @@ alias fp='fast_push' # Fast push with optional commit message
 alias cls='clear'     # Clear terminal screen (duplicate of 'c')
 alias reload='source ~/.zshrc' # Reload zsh configuration
 if command -v apt &> /dev/null; then
-   alias update='sudo apt update && sudo apt upgrade' # Update and upgrade system packages for Debian-based distros
+   alias update='sudo apt update -y && sudo apt upgrade -y && sudo apt full-upgrade -y' # Update and upgrade system packages for Debian-based distros
 elif command -v pacman &> /dev/null; then
-   alias update='sudo pacman -Syu' # Update and upgrade system packages for Arch-based distros
+   alias update='sudo pacman -Syu && yay' # Update and upgrade system packages for Arch-based distros using pacman and yay
 fi
 alias ip='ip -c a'    # Show IP addresses with color
 alias ports='netstat -tulanp' # Show listening ports and associated programs
