@@ -65,22 +65,77 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
-alias ls='ls --color'
-alias vim='nvim'
-alias c='clear'
-alias ll='ls -alF'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+# Aliases for ls command with different options
+alias ls='ls --color=auto'
 alias la='ls -A'
-alias l='ls -CF'
-#Alias git
-alias g='git'
-alias ga='git add'
-alias gal='git add .'
-alias gc='git commit -m'
-alias gs='git status'
-alias gl='git log --oneline --graph'
-alias gp='git push'
-alias gm='git merge'
-alias gf='git add . && git commit -m "fast push" && git push'
+alias ll='ls -alF'    # List all files in long format with type indicators
+alias l='ls -CF'      # List files in columns with type indicators
+
+# Aliases for grep command with color highlighting
+alias grep='grep --color=auto'    # Grep with color highlighting
+alias fgrep='fgrep --color=auto'  # Fixed-string grep with color highlighting
+alias egrep='egrep --color=auto'  # Extended grep with color highlighting
+
+# Aliases for disk usage and free memory
+alias df='df -h'      # Human-readable disk usage
+alias du='du -h'      # Human-readable directory usage
+alias free='free -m'  # Memory usage in megabytes
+
+# Aliases for shell utilities
+alias j='jobs'        # List active jobs
+alias ping='ping -c 5' # Ping with 5 packets
+alias c='clear'       # Clear terminal screen
+alias path='echo -e ${PATH//:/\\n}' # Display PATH variable with each entry on a new line
+
+# Aliases for directory management
+alias md='mkdir -p'   # Create directory and parent directories if needed
+alias rd='rmdir'      # Remove directory
+
+# Alias for using neovim instead of vim
+alias vim='nvim'      # Use neovim instead of vim
+alias vi='nvim'       # Use neovim instead of vi
+
+# Aliases for git commands
+alias g='git'         # Shortcut for git
+alias ga='git add'    # Add files to staging area
+alias gal='git add .' # Add all files to staging area
+alias gc='git commit -m' # Commit with message
+alias gs='git status' # Show git status
+alias gl='git log --oneline --graph' # Show git log in one line with graph
+alias gp='git push'   # Push changes to remote repository
+alias gpl='git pull'  # Pull changes from remote repository
+alias gm='git merge'  # Merge branches
+alias gr='git rebase' # Rebase changes
+alias gd='git diff'   # Show git diff
+alias gco='git checkout' # Checkout branch
+alias gb='git branch' # List git branches
+alias gba='git branch -a' # List all git branches
+alias gbd='git branch -d' # Delete git branch
+alias gcp='git cherry-pick' # Cherry-pick commit
+alias grs='git reset' # Reset changes
+alias gcl='git clone' # Clone repository
+alias gcb='git checkout -b' # Create and checkout new branch
+alias gpr='git pull --rebase' # Pull changes with rebase
+alias gsh='git show' # Show git commit
+alias gf='git add . && git commit -m "fast push" && git push' # Fast push: add, commit, and push
+
+# Additional useful aliases
+alias cls='clear'     # Clear terminal screen (duplicate of 'c')
+alias reload='source ~/.zshrc' # Reload zsh configuration
+alias update='sudo apt update && sudo apt upgrade' # Update and upgrade system packages
+alias ip='ip -c a'    # Show IP addresses with color
+alias ports='netstat -tulanp' # Show listening ports and associated programs
+
+# Additional aliases
+alias chown='chown --preserve-root' # Prevent chown from operating recursively on /
+alias chmod='chmod --preserve-root' # Prevent chmod from operating recursively on /
+alias chgrp='chgrp --preserve-root' # Prevent chgrp from operating recursively on /
+alias wget='wget -c'  # Continue incomplete downloads
 
 # Shell integrations
 eval "$(fzf --zsh)"
