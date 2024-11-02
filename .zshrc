@@ -16,26 +16,6 @@ if ! command -v zoxide &> /dev/null; then
    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 fi
 
-# Variables
-REPO_URL="https://github.com/Denos-soneD/zshrc/tree/main"
-LAST_SHA_FILE="$HOME/.last_sha.txt"
-
-# Récupérer le SHA du dernier commit depuis la page HTML
-current_sha=$(curl -s $REPO_URL | grep -m 1 'commit/' | sed 's/.*commit\/\([a-f0-9]\+\).*/\1/')
-
-# Lire le SHA précédent enregistré
-last_sha=$(cat "$LAST_SHA_FILE" 2>/dev/null)
-
-# Comparer les SHAs
-if [ "$current_sha" != "$last_sha" ]; then
-  echo "Le dépôt a été mis à jour."
-  echo "$current_sha" > "$LAST_SHA_FILE" # Mettre à jour le fichier SHA
-  curl -s https://raw.githubusercontent.com/Denos-soneD/zshrc/refs/heads/main/.zshrc -o ~/.zshrc
-else
-  echo "Le dépôt est à jour."
-fi
-
-
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
