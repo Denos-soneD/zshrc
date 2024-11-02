@@ -144,7 +144,7 @@ alias gpr='git pull --rebase' # Pull changes with rebase
 alias gsh='git show' # Show git commit
 # Function for fast push with optional commit message
 fast_push() {
-   local message=${1:-"fast push"}
+   local message=${*:-"fast push"}
    git add . && git commit -m "$message" && git push
 }
 alias gf='fast_push'
