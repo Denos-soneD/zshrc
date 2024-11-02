@@ -9,7 +9,7 @@ fi
 
 if [ ! -d "$HOME/.config/ohmyposh/zen.toml" ]; then
    mkdir -p "$HOME/.config/ohmyposh"
-   wget https://raw.githubusercontent.com/dreamsofautonomy/zen-omp/refs/heads/main/zen.toml -O "$HOME/.config/ohmyposh/zen.toml"
+   wget https://raw.githubusercontent.com/Denos-soneD/zshrc/refs/heads/main/zen.toml -O "$HOME/.config/ohmyposh/zen.toml"
 fi
 
 # Source/Load zinit
