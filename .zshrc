@@ -149,29 +149,6 @@ alias rd='rmdir'      # Remove directory
 alias vim='nvim'      # Use neovim instead of vim
 alias vi='nvim'       # Use neovim instead of vi
 
-# Aliases for git commands
-alias g='git'         # Shortcut for git
-alias ga='git add'    # Add files to staging area
-alias gal='git add .' # Add all files to staging area
-alias gc='git commit -m' # Commit with message
-alias gs='git status' # Show git status
-alias gl='git log --oneline --graph' # Show git log in one line with graph
-alias gp='git push'   # Push changes to remote repository
-alias gpl='git pull'  # Pull changes from remote repository
-alias gm='git merge'  # Merge branches
-alias gr='git rebase' # Rebase changes
-alias gd='git diff'   # Show git diff
-alias gco='git checkout' # Checkout branch
-alias gb='git branch' # List git branches
-alias gba='git branch -a' # List all git branches
-alias gbd='git branch -d' # Delete git branch
-alias gcp='git cherry-pick' # Cherry-pick commit
-alias grs='git reset' # Reset changes
-alias gcl='git clone' # Clone repository
-alias gcb='git checkout -b' # Create and checkout new branch
-alias gpr='git pull --rebase' # Pull changes with rebase
-alias gsh='git show' # Show git commit
-
 # Function for fast push with optional commit message
 fast_push() {
    local message=${*:-"fast push"}
