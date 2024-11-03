@@ -51,7 +51,34 @@ zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
 
-# Load completions
+# Check if completion for exegol exists; create if not
+COMPLETION_DIR="$HOME/.zsh/completion"
+EXEGOL_COMPLETION="$COMPLETION_DIR/_exegol"
+
+if [ ! -f "$EXEGOL_COMPLETION" ]; then
+   mkdir -p "$COMPLETION_DIR"
+   cat << 'EOF' > "$EXEGOL_COMPLETION"
+#compdef exegol
+
+_exegol_commands=(
+   'start:Start the Exegol environment'
+   'stop:Stop the Exegol environment'
+   'restart:Restart the Exegol environment'
+   'install:Install Exegol dependencies'
+   'update:Update Exegol'
+   'uninstall:Uninstall Exegol'
+   'remove:Remove Exegol'
+   'exec:Execute a command in Exegol'
+   'info:Show information about Exegol'
+   'version:Display the current version of Exegol'
+)
+
+_describe -t commands 'exegol commands' _exegol_commands
+EOF
+fi
+
+# Add completion directory to fpath and initialize completion
+fpath+=("$HOME/.zsh/completion")
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
@@ -80,10 +107,10 @@ setopt hist_find_no_dups
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
+zstyle ':completion:*' menu yes      
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-# zstyle ':fzf-tab:complete:*' fzf-preview 'source ~/.zshrc; if [[ -d "$word" ]]; then ls --color "$word"; elif [[ "$word" == -* ]]; then :; else alias $word 2>/dev/null || (man $word | col -b | sed -n "/^DESCRIPTION/,/^OPTIONS/{/^OPTIONS/!p}" | fold -s -w 69  | sed "s/^[ \t]*//" 2>/dev/null || echo "No alias or man page found for $word" 2>/dev/null); fi'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath' 
+   # zstyle ':fzf-tab:complete:*' fzf-preview 'source ~/.zshrc; if [[ -d "$word" ]]; then ls --color "$word"; elif [[ "$word" == -* ]]; then :; else alias $word 2>/dev/null || (man $word | col -b | sed -n "/^DESCRIPTION/,/^OPTIONS/{/^OPTIONS/!p}" | fold -s -w 69  | sed "s/^[ \t]*//" 2>/dev/null || echo "No alias or man page found for $word" 2>/dev/null); fi'
 
 
 # Aliases
@@ -92,7 +119,7 @@ alias ...='cd ../..' # Go up two directories
 alias ....='cd ../../..'   # Go up three directories
 alias .....='cd ../../../..'  # Go up four directories
 
-# Aliases for ls command with different options
+# Aliases for ls command with different options 
 alias ls='ls --color=auto' # List files with color highlighting
 alias la='ls -A'        # List all files except . and ..
 alias ll='ls -alF'    # List all files in long format with type indicators
@@ -169,7 +196,7 @@ alias chmod='chmod --preserve-root' # Prevent chmod from operating recursively o
 alias chgrp='chgrp --preserve-root' # Prevent chgrp from operating recursively on /
 alias wget='wget -c'  # Continue incomplete downloads
 alias exegol='sudo -E $HOME/.local/bin/exegol' # Run exegol with sudo and preserve environment variables
-alias sa='sed -n "/^# Aliases/,/^#End of aliases/p" "$HOME/.zshrc" && alias' # Show all aliases
+alias sa='sed -n "/^# Aliases/,/^#End of aliases/p" "$HOME/.zshrc"' # Show all aliases
 alias upzshrc='curl -o ~/.zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc && source ~/.zshrc' # Update zshrc from GitHub
 #End of aliases
 
