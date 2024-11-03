@@ -51,6 +51,16 @@ zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
+zinit snippet OMZP::nmap
+zinit snippet OMZP::ubuntu
+zinit snippet OMZP::debian
+zinit snippet OMZP::python
+zinit snippet OMZP::npm
+zinit snippet OMZP::meteor
+zinit snippet OMZP::common-aliases
+zinit snippet OMZP::globalias
+zinit snippet OMZP::docker
+zinit snippet OMZP::docker-compose
 
 # Check if completion for exegol exists; create if not
 COMPLETION_DIR="$HOME/.zsh/completion"
