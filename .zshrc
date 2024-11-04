@@ -70,6 +70,7 @@ zinit snippet OMZP::debian
 zinit snippet OMZP::python
 zinit snippet OMZP::npm
 
+
 # Add completion directory to fpath and initialize completion
 autoload -Uz compinit && compinit
 
@@ -98,16 +99,24 @@ setopt hist_find_no_dups
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no    
+zstyle --set ":completion:*" list-colors "di=34;1:ln=36;1:so=32;1:pi=33;1:ex=35;1:bd=33;1;40:cd=33;1;40:or=31;1:mi=33;1:su=31;1:sg=30;1;47:tw=34;1;46:ow=34;1;43"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:*' prefix ''
+FZF_TAB_GROUP_COLORS=(
+    $'\033[94m' $'\033[32m' $'\033[33m' $'\033[35m' $'\033[31m' $'\033[38;5;27m' $'\033[36m' \
+    $'\033[38;5;100m' $'\033[38;5;98m' $'\033[91m' $'\033[38;5;80m' $'\033[92m' \
+    $'\033[38;5;214m' $'\033[38;5;165m' $'\033[38;5;124m' $'\033[38;5;120m'
+)
+zstyle ':fzf-tab:*' group-colors $FZF_TAB_GROUP_COLORS
+zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath' 
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # zstyle ':fzf-tab:complete:*' fzf-preview 'source ~/.zshrc; if [[ -d "$word" ]]; then ls --color "$word"; elif [[ "$word" == -* ]]; then :; else alias $word 2>/dev/null || (man $word | col -b | sed -n "/^DESCRIPTION/,/^OPTIONS/{/^OPTIONS/!p}" | fold -s -w 69  | sed "s/^[ \t]*//" 2>/dev/null || echo "No alias or man page found for $word" 2>/dev/null); fi'
 
 
 # Aliases
 alias ..='cd ..'    # Go up one directory
-alias ...='cd ../..' # Go up two directories
+alias ...='cd ../..' # Go up two directores
 alias ....='cd ../../..'   # Go up three directories
 alias .....='cd ../../../..'  # Go up four directories
 
