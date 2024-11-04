@@ -36,17 +36,29 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Add in zsh plugins
+zinit ice turbo wait'0'
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+
+zinit ice turbo wait'1'
 zinit light Aloxaf/fzf-tab
 zinit light MichaelAquilina/zsh-you-should-use
 
 # Add in snippets
+zinit ice turbo wait'0'
 zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::git-commit
-zinit snippet OMZP::sudo
+
+zinit ice turbo wait'2'
+zinit pack for \
+    OMZP::git \
+    OMZP::git-commit \
+    OMZP::sudo \
+    OMZP::common-aliases \
+    OMZP::docker \
+    OMZP::docker-compose
+
+zinit ice turbo wait'3'
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
@@ -57,9 +69,6 @@ zinit snippet OMZP::ubuntu
 zinit snippet OMZP::debian
 zinit snippet OMZP::python
 zinit snippet OMZP::npm
-zinit snippet OMZP::common-aliases
-zinit snippet OMZP::docker-compose
-zinit snippet OMZP::docker
 
 # Add completion directory to fpath and initialize completion
 autoload -Uz compinit && compinit
