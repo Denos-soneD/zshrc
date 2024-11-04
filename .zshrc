@@ -76,7 +76,7 @@ bindkey "\e[A" fzf-history-widget
 
 # History
 HISTSIZE=500000
-HISTFILE=~/.config/zsh/zsh_history
+HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
@@ -155,17 +155,11 @@ alias chown='chown --preserve-root' # Prevent chown from operating recursively o
 alias chmod='chmod --preserve-root' # Prevent chmod from operating recursively on /
 alias chgrp='chgrp --preserve-root' # Prevent chgrp from operating recursively on /
 alias wget='wget -c'  # Continue incomplete downloads
-alias upzshrc='curl -o ~/.config/zsh/zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc && source ~/.config/zsh/zshrc' # Update zshrc from GitHub
+alias upzshrc='curl -o ~/.zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc && source ~/.zshrc' # Update zshrc from GitHub
 #End of aliases
 
 # Shell integrations
 PATH+=:$HOME/.local/bin
-export ZDOTDIR="$HOME/.config/zsh"
-if [ -f "$ZDOTDIR/zshrc" ]; then
-    source "$ZDOTDIR/zshrc"
-else
-    echo "Warning: .zshrc not found in $ZDOTDIR"
-fi
 eval "$(register-python-argcomplete --no-defaults exegol)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
