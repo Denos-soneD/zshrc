@@ -29,7 +29,7 @@ fi
 # Set the default editor
 if [ ! -f "$HOME/.config/ohmyposh/zen.toml" ]; then
    mkdir -p "$HOME/.config/ohmyposh"
-   wget https://raw.githubusercontent.com/Denos-soneD/zshrc/refs/heads/main/zen.toml   -O "$HOME/.config/ohmyposh/zen.toml"
+   wget https://raw.githubusercontent.com/Denos-soneD/zshrc/refs/heads/main/zen.toml -O "$HOME/.config/ohmyposh/zen.toml"
 fi
 
 # Source/Load zinit
@@ -45,6 +45,7 @@ zinit light MichaelAquilina/zsh-you-should-use
 # Add in snippets
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
+zinit snippet OMZP::git-commit
 zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::aws
@@ -56,11 +57,9 @@ zinit snippet OMZP::ubuntu
 zinit snippet OMZP::debian
 zinit snippet OMZP::python
 zinit snippet OMZP::npm
-zinit snippet OMZP::meteor
 zinit snippet OMZP::common-aliases
-zinit snippet OMZP::globalias
-zinit snippet OMZP::docker
 zinit snippet OMZP::docker-compose
+zinit snippet OMZP::docker/docker.plugin.zsh
 
 # Check if completion for exegol exists; create if not
 COMPLETION_DIR="$HOME/.zsh/completion"
@@ -99,7 +98,7 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
 # Keybindings
 bindkey -e
-bindkey '^[w' kill-region
+bindkey '^[w' kill-region     
 bindkey "\e[A" fzf-history-widget
 
 # History
@@ -184,11 +183,10 @@ alias chmod='chmod --preserve-root' # Prevent chmod from operating recursively o
 alias chgrp='chgrp --preserve-root' # Prevent chgrp from operating recursively on /
 alias wget='wget -c'  # Continue incomplete downloads
 alias exegol='sudo -E $HOME/.local/bin/exegol' # Run exegol with sudo and preserve environment variables
-alias sa='sed -n "/^# Aliases/,/^#End of aliases/p" "$HOME/.zshrc"' # Show all aliases
 alias upzshrc='curl -o ~/.zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc && source ~/.zshrc' # Update zshrc from GitHub
 #End of aliases
 
 # Shell integrations
-eval "$(register-python-argcomplete --no-defaults exegol)"
+eval "$(register-python-argcomplete --no-defaults $HOME/.local/bin/exegol)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
