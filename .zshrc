@@ -1,8 +1,8 @@
 # Check and install fzf if not installed
 if ! command -v fzf &> /dev/null; then
    echo "fzf not found, installing..."
-   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-   ~/.fzf/install
+   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/fzf
+   ~/.config/fzf/install
 fi
 
 # Check and install oh-my-posh if not installed
@@ -59,36 +59,9 @@ zinit snippet OMZP::python
 zinit snippet OMZP::npm
 zinit snippet OMZP::common-aliases
 zinit snippet OMZP::docker-compose
-zinit snippet OMZP::docker/docker.plugin.zsh
-
-# Check if completion for exegol exists; create if not
-COMPLETION_DIR="$HOME/.zsh/completion"
-EXEGOL_COMPLETION="$COMPLETION_DIR/_exegol"
-
-if [ ! -f "$EXEGOL_COMPLETION" ]; then
-   mkdir -p "$COMPLETION_DIR"
-   cat << 'EOF' > "$EXEGOL_COMPLETION"
-#compdef exegol
-
-_exegol_commands=(
-   'start:Start the Exegol environment'
-   'stop:Stop the Exegol environment'
-   'restart:Restart the Exegol environment'
-   'install:Install Exegol dependencies'
-   'update:Update Exegol'
-   'uninstall:Uninstall Exegol'
-   'remove:Remove Exegol'
-   'exec:Execute a command in Exegol'
-   'info:Show information about Exegol'
-   'version:Display the current version of Exegol'
-)
-
-_describe -t commands 'exegol commands' _exegol_commands
-EOF
-fi
+zinit snippet OMZP::docker
 
 # Add completion directory to fpath and initialize completion
-fpath+=("$HOME/.zsh/completion")
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
@@ -103,7 +76,7 @@ bindkey "\e[A" fzf-history-widget
 
 # History
 HISTSIZE=500000
-HISTFILE=~/.zsh_history
+HISTFILE=~/.config/zsh/zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
@@ -117,10 +90,10 @@ setopt hist_find_no_dups
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu yes      
+zstyle ':completion:*' menu no    
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath' 
-   # zstyle ':fzf-tab:complete:*' fzf-preview 'source ~/.zshrc; if [[ -d "$word" ]]; then ls --color "$word"; elif [[ "$word" == -* ]]; then :; else alias $word 2>/dev/null || (man $word | col -b | sed -n "/^DESCRIPTION/,/^OPTIONS/{/^OPTIONS/!p}" | fold -s -w 69  | sed "s/^[ \t]*//" 2>/dev/null || echo "No alias or man page found for $word" 2>/dev/null); fi'
+# zstyle ':fzf-tab:complete:*' fzf-preview 'source ~/.zshrc; if [[ -d "$word" ]]; then ls --color "$word"; elif [[ "$word" == -* ]]; then :; else alias $word 2>/dev/null || (man $word | col -b | sed -n "/^DESCRIPTION/,/^OPTIONS/{/^OPTIONS/!p}" | fold -s -w 69  | sed "s/^[ \t]*//" 2>/dev/null || echo "No alias or man page found for $word" 2>/dev/null); fi'
 
 
 # Aliases
@@ -182,11 +155,17 @@ alias chown='chown --preserve-root' # Prevent chown from operating recursively o
 alias chmod='chmod --preserve-root' # Prevent chmod from operating recursively on /
 alias chgrp='chgrp --preserve-root' # Prevent chgrp from operating recursively on /
 alias wget='wget -c'  # Continue incomplete downloads
-alias exegol='sudo -E $HOME/.local/bin/exegol' # Run exegol with sudo and preserve environment variables
-alias upzshrc='curl -o ~/.zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc && source ~/.zshrc' # Update zshrc from GitHub
+alias upzshrc='curl -o ~/.config/zsh/zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc && source ~/.config/zsh/zshrc' # Update zshrc from GitHub
 #End of aliases
 
 # Shell integrations
-eval "$(register-python-argcomplete --no-defaults $HOME/.local/bin/exegol)"
+PATH+=:$HOME/.local/bin
+export ZDOTDIR="$HOME/.config/zsh"
+if [ -f "$ZDOTDIR/zshrc" ]; then
+    source "$ZDOTDIR/zshrc"
+else
+    echo "Warning: .zshrc not found in $ZDOTDIR"
+fi
+eval "$(register-python-argcomplete --no-defaults exegol)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
