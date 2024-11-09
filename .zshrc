@@ -1,4 +1,5 @@
 # Check and install fzf if not installed
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if ! command -v fzf &> /dev/null; then
    echo "fzf not found, installing..."
    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/fzf
@@ -82,7 +83,7 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 # Keybindings
 bindkey -e
 bindkey '^[w' kill-region     
-bindkey "\e[A" fzf-history-widget
+bindkey "${terminfo[kcuu1]}" fzf-history-widget
 
 # History
 HISTSIZE=500000
