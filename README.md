@@ -21,3 +21,7 @@ curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
 ```bash
 curl -o ~/.zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc && source ~/.zshrc
 ```
+
+### Install exegol_zshrc :
+```
+curl -o ~/.exegol/my-resources/setup/zsh/zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/exegol_zshrc
