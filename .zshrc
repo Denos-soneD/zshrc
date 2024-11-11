@@ -50,72 +50,26 @@ zinit light MichaelAquilina/zsh-you-should-use
 zinit ice turbo wait'0'
 zinit snippet OMZL::git.zsh
 
-# Check the OS to download specific snippets
-is_debian=false
-is_arch=false
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    if command -v apt &> /dev/null; then
-        is_debian=true
-    elif command -v pacman &> /dev/null; then
-        is_arch=true
-    fi
-fi
-
-# Install Oh My Zsh plugins based on available commands
 zinit ice turbo wait'2'
 zinit pack for \
     OMZP::git \
+    OMZP::git-commit \
     OMZP::sudo \
-    OMZP::common-aliases
+    OMZP::common-aliases \
+    OMZP::docker \
+    OMZP::docker-compose
 
-if command -v git &> /dev/null; then
-    zinit light OMZP::git-commit
-fi
-
-if command -v docker &> /dev/null; then
-    zinit light OMZP::docker
-    zinit light OMZP::docker-compose
-fi
-
-# Install OS-specific and command-specific snippets
 zinit ice turbo wait'3'
-if $is_arch; then
-    zinit snippet OMZP::archlinux
-elif $is_debian; then
-    zinit snippet OMZP::ubuntu
-    zinit snippet OMZP::debian
-fi
-
-if command -v aws &> /dev/null; then
-    zinit snippet OMZP::aws
-fi
-
-if command -v kubectl &> /dev/null; then
-    zinit snippet OMZP::kubectl
-fi
-
-if command -v kubectx &> /dev/null; then
-    zinit snippet OMZP::kubectx
-fi
-
-if command -v nmap &> /dev/null; then
-    zinit snippet OMZP::nmap
-fi
-
-if command -v python &> /dev/null; then
-    zinit snippet OMZP::python
-fi
-
-if command -v npm &> /dev/null; then
-    zinit snippet OMZP::npm
-fi
-
-# Command-not-found snippet (useful on Debian/Ubuntu only)
-if $is_debian; then
-    zinit snippet OMZP::command-not-found
-fi
-
-
+zinit snippet OMZP::archlinux
+zinit snippet OMZP::aws
+zinit snippet OMZP::kubectl
+zinit snippet OMZP::kubectx
+zinit snippet OMZP::command-not-found
+zinit snippet OMZP::nmap
+zinit snippet OMZP::ubuntu
+zinit snippet OMZP::debian
+zinit snippet OMZP::python
+zinit snippet OMZP::npm
 
 # Add completion directory to fpath and initialize completion
 autoload -Uz compinit && compinit
