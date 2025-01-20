@@ -6,12 +6,6 @@ if ! command -v fzf &> /dev/null; then
    ~/.config/fzf/install
 fi
 
-# Check and install oh-my-posh if not installed
-if ! command -v oh-my-posh &> /dev/null; then
-   echo "oh-my-posh not found, installing..."
-   curl -s https://ohmyposh.dev/install.sh | bash -s
-fi
-
 # Check and install zoxide if not installed
 if ! command -v zoxide &> /dev/null; then
    echo "zoxide not found, installing..."
@@ -25,12 +19,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-
-# Set the default editor
-if [ ! -f "$HOME/.config/ohmyposh/zen.toml" ]; then
-   mkdir -p "$HOME/.config/ohmyposh"
-   wget https://raw.githubusercontent.com/Denos-soneD/zshrc/refs/heads/main/zen.toml -O "$HOME/.config/ohmyposh/zen.toml"
 fi
 
 # Source/Load zinit
@@ -47,6 +35,8 @@ zinit light Aloxaf/fzf-tab
 zinit light MichaelAquilina/zsh-you-should-use
 
 # Add in snippets
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
 zinit ice turbo wait'0'
 zinit snippet OMZL::git.zsh
 
@@ -73,7 +63,7 @@ zinit snippet OMZP::npm
 
 # Add completion directory to fpath and initialize completion
 autoload -Uz compinit && compinit
-
+autoload -U promptinit; promptinit
 zinit cdreplay -q
 
 #Init oh-my-posh
