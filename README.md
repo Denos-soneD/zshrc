@@ -31,7 +31,7 @@ git clone https://github.com/sindresorhus/pure.git "$HOME/.oh-my-zsh/custom/pure
 ### Install my zshrc :
 
 ```bash
-curl -o ~/.zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/.zshrc && source ~/.zshrc
+curl -o ~/.zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/zshrc && source ~/.zshrc
 ```
 
 ### Install exegol_zshrc :
