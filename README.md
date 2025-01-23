@@ -1,16 +1,15 @@
-# ZSHRC
+## Install fzf
 
-### Install fzf
-## local
+#### local
 ```bash
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
-## linux
+#### linux
 ```bash
 sudo apt install -y fzf
 ```
-## arch
+#### arch
 ```
 sudo pacman -Syu fzf
 ```
