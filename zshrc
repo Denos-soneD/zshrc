@@ -37,9 +37,28 @@ zstyle ':completion:*:descriptions' format '[%d]'
 # ~~~~~~~~~~~~~ ALIAS ~~~~~~~~~~~~~~~
 
 
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
 alias la='ls -lathr'
 fast_push() {
 	local message=${*:-"Fast commit"}
 	git add . && git commit -m "$message" && git push
 }
 alias fp=fast_push
+alias c='clear'
+# Update command based on OS
+case "$(uname -s)" in
+	Linux*)
+		if [ -f /etc/debian_version ]; then
+			alias update='sudo DEBIAN_FRONTEND=noninteractive apt update && sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y'
+		elif [ -f /etc/arch-release ]; then
+			alias update='yes | sudo pacman -Syu --noconfirm'
+		elif [ -f /etc/fedora-release ]; then
+			alias update='sudo dnf update -y --assumeyes'
+		fi
+		;;
+	Darwin*)
+		alias update='HOMEBREW_NO_AUTO_UPDATE=1 brew update && NONINTERACTIVE=1 brew upgrade --force'
+		;;
+esac
