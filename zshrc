@@ -32,3 +32,14 @@ bindkey "${terminfo[kcuu1]}" fzf-history-widget
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':completion:*:descriptions' format '[%d]'
+
+
+# ~~~~~~~~~~~~~ ALIAS ~~~~~~~~~~~~~~~
+
+
+alias la='ls -lathr'
+fast_push() {
+	local message=${*:-"Fast commit"}
+	git add . && git commit -m "$message" && git push
+}
+alias fp=fast_push
