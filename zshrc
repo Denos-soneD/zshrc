@@ -1,3 +1,9 @@
+# ~~~~~~~~~~~~~ ENVIRONMENT ~~~~~~~~~
+
+
+DISABLE_UPDATE_PROMPT=true
+
+
 # ~~~~~~~~~~~~~ PATH ~~~~~~~~~~~~~~~~
 
 
