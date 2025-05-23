@@ -46,13 +46,14 @@ zstyle ':completion:*:descriptions' format '[%d]'
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
-alias la='ls -lathr'
+
 fast_push() {
 	local message=${*:-"Fast commit"}
 	git add . && git commit -m "$message" && git push
 }
 alias fp=fast_push
 alias c='clear'
+
 # Update command based on OS
 case "$(uname -s)" in
 	Linux*)
