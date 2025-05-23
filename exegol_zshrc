@@ -41,3 +41,11 @@ zstyle ':completion:*:descriptions' format '[%d]'
 
 
 alias c='clear'
+
+alias start_nmap='mkdir scans loot shares; nmap -A $TARGET -vvv -oA scans/first_scan; nmap -A $TARGET -vvv -p- -oA scans/full_scan; nmap -sU -A $TARGET --top-port 100 -vvv -oA scans/first_scan_udp'
+alias start_nikto='nikto -h $TARGET -o scans/nikto.txt'
+alias start_dirsearch='dirsearch -u $TARGET -o scans/dirsearch.txt'
+alias start_gobuster='gobuster dir -u $TARGET -w /opt/lists/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -o scans/gobuster.txt'
+alias big_gobuster='gobuster dir -u $TARGET -w /opt/lists/seclists/Discovery/Web-Content/directory-list-2.3-big.txt -o scans/gobuster_big.txt'
+alias start_ffuf='ffuf -u $TARGET -w `fzf-wordlists` -H "Host:FUZZ.$TARGET" -fs 178'
+
