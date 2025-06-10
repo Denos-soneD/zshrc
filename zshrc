@@ -69,3 +69,6 @@ case "$(uname -s)" in
 		alias update='HOMEBREW_NO_AUTO_UPDATE=1 brew update && NONINTERACTIVE=1 brew upgrade --force'
 		;;
 esac
+
+alias start_nmap_root='mkdir scans loot shares; sudo nmap -A $TARGET -vvv -oA scans/first_scan; sudo nmap -A $TARGET -vvv -p- -oA scans/full_scan; sudo nmap -sU -A $TARGET --top-port 100 -vvv -oA scans/first_scan_udp'
+alias start_nmap='mkdir scans loot shares; nmap -A $TARGET -vvv -oA scans/first_scan; nmap -A $TARGET -vvv -p- -oA scans/full_scan; nmap -sU -A $TARGET --top-port 100 -vvv -oA scans/first_scan_udp'
