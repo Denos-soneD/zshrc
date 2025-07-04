@@ -45,10 +45,11 @@ zstyle ':completion:*:descriptions' format '[%d]'
 
 alias v='nvim'
 
-fp() {
+fast_push() {
 	local message=${*:-"Fast commit"}
 	git add . && git commit -m "$message" && git push
 }
+alias fp=fast_push
 alias c='clear'
 
 # Update command based on OS

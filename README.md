@@ -112,13 +112,3 @@ git clone https://github.com/sindresorhus/pure.git "$HOME/.oh-my-zsh/custom/pure
 ```bash
 curl -o ~/.zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/zshrc && source ~/.zshrc
 ```
-
----
-
-## 🐧 Exegol
-
-For **Exegol** users, a specific configuration is available:
-
-```bash
-curl -o ~/.exegol/my-resources/setup/zsh/zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/exegol_zshrc
-```
