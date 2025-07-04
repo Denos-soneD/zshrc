@@ -44,14 +44,11 @@ zstyle ':completion:*:descriptions' format '[%d]'
 
 
 alias v='nvim'
-alias vi='nvim'
-alias vim='nvim'
 
-fast_push() {
+fp() {
 	local message=${*:-"Fast commit"}
 	git add . && git commit -m "$message" && git push
 }
-alias fp=fast_push
 alias c='clear'
 
 # Update command based on OS
@@ -60,7 +57,7 @@ case "$(uname -s)" in
 		if [ -f /etc/debian_version ]; then
 			alias update='sudo DEBIAN_FRONTEND=noninteractive apt update && sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y'
 		elif [ -f /etc/arch-release ]; then
-			alias update='yes | sudo pacman -Syu --noconfirm'
+			alias update='yay -Syu --noconfirm'
 		elif [ -f /etc/fedora-release ]; then
 			alias update='sudo dnf update -y --assumeyes'
 		fi
@@ -70,5 +67,4 @@ case "$(uname -s)" in
 		;;
 esac
 
-alias start_nmap_root='mkdir scans loot shares; sudo nmap -A $TARGET -vvv -oA scans/first_scan; sudo nmap -A $TARGET -vvv -p- -oA scans/full_scan; sudo nmap -sU -A $TARGET --top-port 100 -vvv -oA scans/first_scan_udp'
-alias start_nmap='mkdir scans loot shares; nmap -A $TARGET -vvv -oA scans/first_scan; nmap -A $TARGET -vvv -p- -oA scans/full_scan; nmap -sU -A $TARGET --top-port 100 -vvv -oA scans/first_scan_udp'
+alias updatezsh='curl -o ~/.zshrc https://raw.githubusercontent.com/Denos-soneD/zshrc/main/zshrc && source ~/.zshrc'
